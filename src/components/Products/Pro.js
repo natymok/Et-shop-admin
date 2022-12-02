@@ -87,7 +87,7 @@ function Pro() {
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-[95PX] w-[95px] gap-1">
                        {pro.productPicture && pro.productPicture.map((pic)=>(
-                         <motion.img whileHover={{scale:1.3}} key={pic._id} className="h-20 w-20 rounded-full" src={`https://shop-bakend.onrender.com/api/public/${pic.img}`} alt="" />
+                         <motion.img whileHover={{scale:1.3}} key={pic._id} className="h-20 w-20 rounded-full" src={`https://shop-bakend.onrender.com/public/${pic.img}`} alt="" />
                        ))}
                       </div>
                       <div className="ml-4">
