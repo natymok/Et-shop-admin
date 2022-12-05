@@ -90,8 +90,8 @@ const Modal = () => {
                             <option key={cat.id}  value={cat.id}>{cat.name}</option>
                          ))} 
                     </select>
-                    <input type='text' onChange={(e)=>{setcatgoryImage(e.target.value)}}></input>
-                   {/* <input   type='file' className="shadow appearance-none border rounded w-full py-2 px-1 text-black" multiple='multiples' onChange={(e)=>{setcatgoryImage(e.target.files[0])}} />*/}
+
+                 <input   type='file' className="shadow appearance-none border rounded w-full py-2 px-1 text-black" multiple='multiples' onChange={(e)=>{setcatgoryImage(e.target.files[0])}} />
                     
                   </form>
                 </div>
