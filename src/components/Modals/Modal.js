@@ -28,14 +28,15 @@ const Modal = () => {
   }
   const save =()=>{
     setShowModal(false)
-    axiosinstance.post('/admin/addCatagory',form).then((res)=>{
+    axiosinstance.post('/admin/addCatagory',form)
+    .then((res)=>{
       if(res){
         fectchcat()
       }
       
     })
     .catch((err)=>{
-        console.log(err)
+        console.log('error')
     })
    
 
@@ -92,7 +93,7 @@ const Modal = () => {
                     </select>
                     
                     
-               <input   type='file' className="shadow appearance-none border rounded w-full py-2 px-1 text-black" multiple='multiples' onChange={(e)=>{setcatgoryImage(e.target.files[0])}} />
+               <input type='file' className="shadow appearance-none border rounded w-full py-2 px-1 text-black" multiple='multiples' onChange={(e)=>{setcatgoryImage(e.target.files[0])}} />
                     
                   </form>
                 </div>
