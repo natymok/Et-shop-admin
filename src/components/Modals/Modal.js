@@ -36,7 +36,7 @@ const Modal = () => {
       
     })
     .catch((err)=>{
-        console.log('error')
+        console.log(err)
     })
    
 
