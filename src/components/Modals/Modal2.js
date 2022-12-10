@@ -128,8 +128,8 @@ const save=()=>{
                             <option key={cat.id}  value={cat.id}>{cat.name}</option>
                          ))} 
                     </select>
-                 
-                    <input  type='file' className="shadow appearance-none border rounded w-full py-2 px-1 text-black" multiple='multiples' onChange={(e)=>{setProductImage(e.target.files[0])}} />
+                    <input  type='file' className="shadow appearance-none border rounded w-full py-2 px-1 text-black" placeholder="copy image link here" onChange={(e)=>{setProductImage(e.target.value)}} value={productImage} />
+                    {/*<input  type='file' className="shadow appearance-none border rounded w-full py-2 px-1 text-black" multiple='multiples' onChange={(e)=>{setProductImage(e.target.files[0])}} />*/}
                    
                   </form>
                 </div>
