@@ -28,7 +28,7 @@ const Modal = () => {
   }
   const save =()=>{
     setShowModal(false)
-    axiosinstance.post('/admin/addCatagory',form)
+    axiosinstance.post('/admin/addCatagory',{name:catagoryName,parentId:parentid,img:catagoryImage})
     .then((res)=>{
       if(res){
         fectchcat()
