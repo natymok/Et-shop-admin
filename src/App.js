@@ -91,7 +91,7 @@ const fectchcat=async()=>{
         <ProtectedRoute path='/dashboard' component={AdminDashBoard} />
         <Route exact path='/signin' component={Signin}/>
         <Route exact path='/signup' component={Signup}/>
-        <Route exact path='/' component={Header}/>
+        <Route exact path='/' component={Signin}/>
         </Switch>
         </Router>
      </AnimatePresence>
