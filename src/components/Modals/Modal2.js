@@ -38,7 +38,7 @@ const Modal2 = ({req,name,id}) => {
 const addProduct =()=>{
   
   setShowModal(false)
-  axiosinstance.post('/admin/products/create',form).then((res)=>{
+  axiosinstance.post('/admin/products/create',{name:productName,price:price,quantity:quantity,Description:description,catagory:ProductCatagory,productPicture:productImage}).then((res)=>{
       if(res){
 
         fetchProduct()
