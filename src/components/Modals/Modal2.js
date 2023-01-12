@@ -14,6 +14,7 @@ const Modal2 = ({req,name,id}) => {
   const form=new FormData()
   form.append('name',productName)
   form.append('price',parseInt(price))
+  form.append('quantity',parseInt(quantity))
   form.append('Description',description)
   form.append('catagory',ProductCatagory)
   form.append('productPicture',productImage)
