@@ -16,6 +16,7 @@ const Modal2 = ({req,name,id}) => {
   form.append('price',parseInt(price))
   form.append('Description',description)
   form.append('catagory',ProductCatagory)
+  form.append('productPicture',productImage)
   const products= async()=>{
     const proo=await axiosinstance.get('/getProduct')
     return proo.data.message
@@ -35,8 +36,6 @@ const Modal2 = ({req,name,id}) => {
   
 const addProduct =()=>{
   
-  form.append('productPicture',productImage)
-  
   setShowModal(false)
   axiosinstance.post('/admin/products/create',form).then((res)=>{
       if(res){
@@ -45,7 +44,7 @@ const addProduct =()=>{
       }
   })
   .catch((err)=>{
-      console.log(err)
+      console.log('axios error')
   })
 
 
