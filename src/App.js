@@ -11,7 +11,7 @@ import { useStateValue } from "./Context/StateProvider";
 import Product from "./components/Products/Product";
 import Orders from "./components/orders/Orders";
 import Catagories from "./components/Catagory/Catagories";
-import axiosinstance from "./axois/axios";
+import axios from "axios";
 const history = createBrowserHistory();
 function App() {
   const _token=localStorage.getItem('user')
@@ -30,11 +30,13 @@ const allCatagory=(catagories,Option=[])=>{
 }
 
 const catagg=async()=>{
-  const catii=await  axiosinstance.get('/getCatagories')
+  const catii=await  axios.get('https://etshop-server.onrender.com/api/getCatagories',
+  {headers:{"authorization":_token?_token:'',
+  "Access-Control-Allow-Origin":'*'}})
   return catii.data.catagories
 }
 const product= async()=>{
-  const proo=await axiosinstance.get('/getProduct')
+  const proo=await axios.get('https://etshop-server.onrender.com/api/getProduct')
   return proo.data.message
 
 }

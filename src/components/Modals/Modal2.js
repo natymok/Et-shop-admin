@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useStateValue } from "../../Context/StateProvider";
-import axiosinstance from "../../axois/axios";
+import axios from 'axios'
 
 const Modal2 = ({req,name,id}) => {
+  const _token=localStorage.getItem('user')
   let [{catagories,product,token},dispatch]=useStateValue()
   const [showModal, setShowModal] = useState('');
   const [productName, setproductName] = useState('');
@@ -19,7 +20,7 @@ const Modal2 = ({req,name,id}) => {
   form.append('catagory',ProductCatagory)
   form.append('productPicture',productImage)
   const products= async()=>{
-    const proo=await axiosinstance.get('/getProduct')
+    const proo=await axios.get('https://etshop-server.onrender.com/api/getProduct')
     return proo.data.message
   
   }
@@ -38,14 +39,17 @@ const Modal2 = ({req,name,id}) => {
 const addProduct =()=>{
   
   setShowModal(false)
-  axiosinstance.post('/admin/products/create',{name:productName,price:price,quantity:quantity,Description:description,catagory:ProductCatagory,productPicture:productImage}).then((res)=>{
+  axios.post('https://etshop-server.onrender.com/api/admin/products/create',{name:productName,price:price,quantity:quantity,Description:description,catagory:ProductCatagory,productPicture:productImage},
+  {headers:{"authorization":_token?_token:'',
+  "Access-Control-Allow-Origin":'*'}})
+  .then((res)=>{
       if(res){
 
         fetchProduct()
       }
   })
   .catch((err)=>{
-      console.log('axios error')
+      console.log(err)
   })
 
 
@@ -54,7 +58,9 @@ const editProduct =()=>{
   form.append('productPicture',productImage)
   
   setShowModal(false)
-  axiosinstance.put('/admin/product/update',{id:id,name:productName,price:price,Description:description,quantity:quantity})
+  axios.put('https://etshop-server.onrender.com/api/admin/product/update',{id:id,name:productName,price:price,Description:description,quantity:quantity},
+  {headers:{"authorization":_token?_token:'',
+  "Access-Control-Allow-Origin":'*'}})
   .then(res => {
     if(res){
       fetchProduct()

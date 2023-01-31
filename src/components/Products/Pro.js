@@ -2,12 +2,14 @@ import React from 'react'
 import Modal2 from '../Modals/Modal2'
 import Modal from '../Modals/Modal'
 import{motion}from 'framer-motion'
-import axiosinstance from '../../axois/axios'
+
+import axios from 'axios'
 import { useStateValue } from '../../Context/StateProvider'
 function Pro() {
+  const _token=localStorage.getItem('user')
   const [{product},dispatch]=useStateValue()
   const products= async()=>{
-    const proo=await axiosinstance.get('/getProduct')
+    const proo=await axios.get('https://etshop-server.onrender.com/api/getProduct')
     return proo.data.message
   
   }
@@ -23,7 +25,13 @@ function Pro() {
   
   }
     const deleteProduct=(id)=>{
-        axiosinstance.delete('/admin/product/delete/', { data: { id:id} }).then((res)=>{
+        axios.delete('https://etshop-server.onrender.com/api/admin/product/delete/', { data: { id:id} },
+        {headers:{"Authorization":_token,
+        "Access-Control-Allow-Origin":'*',
+        "Content-Type":'application/json'
+
+        }})
+        .then((res)=>{
           if(res){
             fetchProduct()
           }

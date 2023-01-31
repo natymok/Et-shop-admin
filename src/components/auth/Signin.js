@@ -1,8 +1,9 @@
 import { Link ,useHistory} from "react-router-dom";
 import {useState}from 'react'
 import {useStateValue}from'../../Context/StateProvider'
-import axiosinstance  from "../../axois/axios";
+import axios from "axios";
 const Signin = () => {
+    const _token=localStorage.getItem('user')
     const history=useHistory()
     const [errors,setErrors]=useState('')
     const [message,setMessage]=useState('')
@@ -13,10 +14,11 @@ const Signin = () => {
        const login=(e)=>{
         e.preventDefault()
         
-        axiosinstance.post('/admin/signin',{
+        axios.post('https://etshop-server.onrender.com/api/admin/signin',{
             ...user
             
-        })
+        },
+    )
         .then(res=>{
             console.log('newww',res)
             if(res.status=='200')

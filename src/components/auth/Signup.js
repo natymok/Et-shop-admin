@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link ,useHistory} from "react-router-dom";
-import axiosinstance  from "../../axois/axios";
+import axios from "axios";
 const Signup = () => {
+    const _token=localStorage.getItem('user')
     const history=useHistory()
     const [errors,setErrors]=useState('')
     const [message,setMessage]=useState('')
@@ -12,10 +13,12 @@ const Signup = () => {
     const [secret,setScrete]=useState('')
    const user={firstName:firstName,lastName:lastName,email:email,password:password,role:'admin', secret:secret}
    const register=()=>{
-          axiosinstance.post('/admin/signup',{
+          axios.post('https://etshop-server.onrender.com/api/admin/signup',{
             ...user
             
-        })
+        },
+        {headers:{"authorization":_token?_token:'',
+        "Access-Control-Allow-Origin":'*'}})
         .then((res)=>{
           
             if(res.data.message){

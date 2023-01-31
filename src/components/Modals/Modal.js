@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useStateValue } from "../../Context/StateProvider";
-import axiosinstance from "../../axois/axios";
+import axios from 'axios'
 const Modal = () => {
+  const _token=localStorage.getItem('user')
     let [{catagories,token},dispatch]=useStateValue()
   const [showModal, setShowModal] = useState(false);
   const [parentid,setparentID]=useState('')
@@ -9,7 +10,7 @@ const Modal = () => {
   const [catagoryImage,setcatgoryImage]=useState('')
 
   const catagg=async()=>{
-    const catii=await  axiosinstance.get('/getCatagories')
+    const catii=await  axios.get('https://etshop-server.onrender.com/api/getCatagories')
     return catii.data.catagories
   }
   const fectchcat=async()=>{
@@ -28,7 +29,12 @@ const Modal = () => {
   }
   const save =()=>{
     setShowModal(false)
-    axiosinstance.post('/admin/addCatagory',{name:catagoryName,parentId:parentid,img:catagoryImage})
+    axios.post('https://etshop-server.onrender.com/api/admin/addCatagory',{name:catagoryName,parentId:parentid,img:catagoryImage},
+    {headers:
+    {"authorization":_token?_token:'',
+    "Access-Control-Allow-Origin":'*'
+
+    }})
     .then((res)=>{
       if(res){
         fectchcat()
